@@ -1,14 +1,12 @@
 from app import app
 from flask import render_template, request, redirect, url_for, flash, session, g
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from werkzeug.security import generate_password_hash, check_password_hash   # Це фласкові функції для роботи з паролями і хешем
+from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 from DataBase import DataBase
 from UserLogin import UserLogin
 import datetime
 
-
-tmp_hash = 'pbkdf2:sha256:150000$PSRxViBL$4f84a1422b08ec8b3a75524f61f8ad0528b469d182e23dec09eabdfcc72ef92e'  #123qwe
 
 login_manager = LoginManager(app)
 dbase = None
