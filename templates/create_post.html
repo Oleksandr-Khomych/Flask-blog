@@ -1,0 +1,51 @@
+{% extends 'base_template.html' %}
+
+{% block title %}
+	Posts
+{% endblock %}
+
+{% block content_title %}
+	<h1>Posts</h1>
+{% endblock %}
+
+{% block content %}
+
+    {% for message in get_flashed_messages()%}
+        <div class='flash'>{{message}}</div>
+    {% endfor %}
+
+    {% if user %}
+    <form action="/create_post" method="post" class="create_post">
+        <label>Title</label>
+        <br>
+        <input type="text" name="title" value="" required/>
+        <br>
+        <label>Body</label>
+        <br>
+        <textarea name="body" rows="5" cols="45" required></textarea>
+        <p><input type="submit" value="Create"></p>
+    </form>
+    {% else %}
+    <h2>Only authorized users can create posts</h2>
+    <input type="button" onclick="document.location='/auth'" value="Authorization">
+    {% endif%}
+
+    {% if posts %}
+	{% for post in posts %}
+            <div class="row">
+                <div class="title">
+                    <h2>{{post.title}}</h2>
+                </div>
+                <div class="body">
+                    <h4>{{post.body}}</h4>
+                </div>
+                <div class="author">
+                    <span>{{post.author}}</span>
+                </div>
+                <div class="date">
+                    <span>{{post.date}}</span>
+                </div>
+                </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

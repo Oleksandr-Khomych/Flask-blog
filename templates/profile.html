@@ -1,0 +1,18 @@
+{% extends 'base_template.html' %}
+
+{% block title %}
+	Profile
+{% endblock %}
+
+{% block content_title %}
+	Profile
+{% endblock %}
+
+{% block content %}
+    <p>User ID: {{current_user.get_id() }}</p>
+    <p>{{ username }}</p>
+	<p>{{ login }}</p>
+	<p>{{ post_count }}</p>
+    <p>{{ date_register }}</p>
+	<a href="{{ url_for('logout') }}">Logout</a>
+{% endblock %}

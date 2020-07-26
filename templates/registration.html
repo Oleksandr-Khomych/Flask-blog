@@ -1,0 +1,22 @@
+{% extends 'base_template.html' %}
+
+{% block title %}
+	Registration page
+{% endblock %}
+
+{% block content_title %}
+	Registration
+{% endblock %}
+
+{% block content %}
+    {% for message in get_flashed_messages()%}
+    <div class='flash'>{{message}}</div>
+    {% endfor %}
+	<form action="/registration" method="post" class="registration">
+	<p><label>Username</label><input type="text" name="username" value="" required/></p>
+    <p><label>Login</label><input type="text" name="login" value="" required/></p>
+    <p><label>Password</label><input type="password" name="password" value="" required/></p>
+        <p><label>Repeat Password</label><input type="password" name="password_repeat" value="" required/></p>
+    <p><input type="submit" value="Register"></p>
+</form>
+{% endblock %}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+      {% block title %}
+
+      {% endblock %} | Flask app
+
+    </title>
+    <!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href=" {{ url_for('Home') }}">Flask</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/blog">Blog<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/create_post">Create a post</a>
+      </li>
+      {% if user %}
+        <li class="nav-item">
+        <a class="nav-link" href="/profile/{{ user['login'] }}">Profile:{{ user['username'] }}</a>
+      </li>
+      {% else %}
+        <li class="nav-item">
+        <a class="nav-link" href="/auth">Authorization</a>
+      </li>
+      {% endif%}
+    </ul>
+    <form class="form-inline my-2 my-lg-0" method="get" action="/blog">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query" value="{{ request.args.get('query', '')}}">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+  <div class="container">
+    <div class="row">
+      <h1>
+         {% block content_title %}
+
+        {% endblock %}
+      </h1>
+    </div>
+        {%  block content %}
+
+        {% endblock %}
+  </div>
+</body>
+</html>
